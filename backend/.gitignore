@@ -1,0 +1,89 @@
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# ----------------------
+# Virtual Environment
+# ----------------------
+.venv/
+venv/
+env/
+
+# ----------------------
+# Environment Variables
+# ----------------------
+.env
+.env.*
+!.env.example
+
+# ----------------------
+# Logs
+# ----------------------
+*.log
+logs/
+
+# ----------------------
+# Database
+# ----------------------
+*.db
+*.sqlite3
+
+# ----------------------
+# Cache
+# ----------------------
+.cache/
+.pytest_cache/
+.mypy_cache/
+ruff_cache/
+
+# ----------------------
+# Testing
+# ----------------------
+.coverage
+htmlcov/
+
+# ----------------------
+# IDE / Editor
+# ----------------------
+.vscode/
+.history/
+.idea/
+
+# ----------------------
+# OS Files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# uv / Python tooling
+# ----------------------
+.python-version
+
+# ----------------------
+# Docker
+# ----------------------
+*.pid
+*.seed
+
+# ----------------------
+# Temporary files
+# ----------------------
+*.tmp
+*.bak
+*.swp
+
+# ----------------------
+# Migrations (optional)
+# ----------------------
+# Uncomment if auto-generated
+# migrations/versions/*.py
