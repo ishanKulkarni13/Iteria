@@ -5,7 +5,7 @@ import time
 from engine.config.settings import Settings, get_settings
 from engine.core.critic import SimpleCritic
 from engine.core.generator import ExtractiveGroundedGenerator
-from engine.core.retriever import BaseRetriever, SimpleLocalDocsRetriever
+from engine.core.retriever import BaseRetriever, ChromaRetriever, SimpleLocalDocsRetriever
 from engine.core.rewriter import SimpleQueryRewriter
 from engine.models import EngineResponse, IterationTrace
 
@@ -116,7 +116,11 @@ class IteriaEngine:
 
 def build_default_engine(*, settings: Settings | None = None) -> IteriaEngine:
 	settings = settings or get_settings()
-	retriever = SimpleLocalDocsRetriever(settings=settings)
+	retriever: BaseRetriever
+	if settings.use_chroma_retriever:
+		retriever = ChromaRetriever(settings=settings)
+	else:
+		retriever = SimpleLocalDocsRetriever(settings=settings)
 	generator = ExtractiveGroundedGenerator()
 	critic = SimpleCritic(settings=settings)
 	rewriter = SimpleQueryRewriter()

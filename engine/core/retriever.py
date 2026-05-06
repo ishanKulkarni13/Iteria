@@ -123,3 +123,48 @@ class SimpleLocalDocsRetriever:
 class EmptyRetriever:
     def retrieve(self, query: str, *, top_k: int) -> list[RetrievedItem]:
         return []
+
+
+class ChromaRetriever:
+    """Query-time retriever backed by ChromaDB + sentence-transformers embeddings."""
+
+    def __init__(self, *, settings: Settings) -> None:
+        self._settings = settings
+
+        from engine.rag.embeddings import EmbeddingConfig, SentenceTransformerEmbedder
+        from engine.rag.vector_store import ChromaConfig, ChromaVectorStore
+
+        self._embedder = SentenceTransformerEmbedder(
+            config=EmbeddingConfig(model_name=settings.embedding_model_name)
+        )
+        self._store = ChromaVectorStore(
+            config=ChromaConfig(
+                persist_dir=settings.chroma_persist_dir,
+                collection_name=settings.chroma_collection_name,
+            )
+        )
+
+    def retrieve(self, query: str, *, top_k: int) -> list[RetrievedItem]:
+        query = query.strip()
+        if not query:
+            return []
+        q = self._embedder.embed_query(query)
+        raw = self._store.similarity_search(query_embedding=q, top_k=top_k)
+
+        # Chroma distance is smaller-is-better (often). Convert to a similarity-ish score.
+        items: list[RetrievedItem] = []
+        for r in raw:
+            dist = r.get("distance")
+            score = 0.0
+            if isinstance(dist, (int, float)):
+                score = 1.0 / (1.0 + float(dist))
+            items.append(
+                RetrievedItem(
+                    chunk_id=str(r.get("id")),
+                    text=str(r.get("document") or ""),
+                    score=float(score),
+                    source=str((r.get("metadata") or {}).get("path") or ""),
+                    metadata=dict(r.get("metadata") or {}),
+                )
+            )
+        return items

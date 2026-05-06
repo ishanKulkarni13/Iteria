@@ -1,40 +1,55 @@
-import os
+from __future__ import annotations
 
-def load_documents():
+from pathlib import Path
+from typing import Iterable
+
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_core.documents import Document
+
+
+def load_documents(
+    *,
+    docs_dir: str | Path = "data/docs",
+    glob: str = "**/*.txt",
+) -> list[Document]:
+    """Load documents from disk using LangChain loaders.
+
+    Returns LangChain `Document` objects with:
+    - `page_content`: text content
+    - `metadata`: includes `source`, `path`, `filename`
     """
-    Load all .txt documents from data/docs/
-    Returns:
-        List[str]: list of document contents
-    """
 
-    docs_path = "data/docs"
-    documents = []
+    docs_dir = Path(docs_dir)
+    if not docs_dir.exists():
+        return []
 
-    # Check if folder exists
-    if not os.path.exists(docs_path):
-        print(f"Folder not found: {docs_path}")
-        return documents
+    loader = DirectoryLoader(
+        str(docs_dir),
+        glob=glob,
+        loader_cls=TextLoader,
+        loader_kwargs={"encoding": "utf-8"},
+        use_multithreading=True,
+        show_progress=False,
+    )
 
-    # Loop through files
-    for filename in os.listdir(docs_path):
-        if filename.endswith(".txt"):
-            file_path = os.path.join(docs_path, filename)
+    docs = loader.load()
+    for d in docs:
+        src = d.metadata.get("source")
+        if src:
+            path = Path(src)
+            d.metadata.setdefault("path", str(path.as_posix()))
+            d.metadata.setdefault("filename", path.name)
+    return docs
 
-            try:
-                with open(file_path, "r", encoding="utf-8") as f:
-                    content = f.read()
-                    documents.append(content)
 
-            except Exception as e:
-                print(f"Error reading {filename}: {e}")
-
-    print(f"Loaded {len(documents)} documents")
-    return documents
-
+def iter_texts(docs: Iterable[Document]) -> Iterable[str]:
+    for d in docs:
+        yield d.page_content
 
 
 if __name__ == "__main__":
     docs = load_documents()
-    for i, doc in enumerate(docs):
-        print(f"\n--- Document {i + 1} ---\n")
-        print(doc[:200])
+    print(f"Loaded {len(docs)} documents")
+    for i, d in enumerate(docs[:3], start=1):
+        print(f"\n--- Document {i}: {d.metadata.get('filename', 'unknown')} ---")
+        print(d.page_content[:200])

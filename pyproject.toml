@@ -3,7 +3,7 @@ name = "iteria"
 version = "0.1.0"
 description = "Iteria - agentic RAG with iterative self-correction"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.14"
 
 dependencies = [
   "fastapi>=0.110",
@@ -16,6 +16,10 @@ dependencies = [
 [project.optional-dependencies]
 rag = [
   "chromadb>=0.5",
+  "langchain>=0.2",
+  "langchain-community>=0.2",
+  "spacy>=3.7,<3.9",
+  "sentence-transformers>=3.0",
 ]
 
 dev = [

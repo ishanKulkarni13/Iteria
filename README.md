@@ -16,9 +16,9 @@ It is built by a team of four members as a course project (CP), focusing on prac
 
 Traditional RAG systems often:
 
-* Retrieve irrelevant or incomplete context
-* Generate partially correct answers
-* Hallucinate unsupported information
+- Retrieve irrelevant or incomplete context
+- Generate partially correct answers
+- Hallucinate unsupported information
 
 Iteria addresses these issues by introducing a **feedback-driven reasoning loop**.
 
@@ -75,9 +75,9 @@ Generates answers using retrieved context.
 
 Evaluates the answer based on:
 
-* Groundedness (is it supported by data?)
-* Completeness (does it fully answer the query?)
-* Relevance (is it aligned with the question?)
+- Groundedness (is it supported by data?)
+- Completeness (does it fully answer the query?)
+- Relevance (is it aligned with the question?)
 
 ### 4. Query Rewriter
 
@@ -91,19 +91,19 @@ Performs additional checks for hallucination or unsupported claims.
 
 ## 🎯 Design Principles
 
-* **Grounded Responses** — answers must be based on retrieved data
-* **Iterative Improvement** — responses improve over multiple passes
-* **Controlled Looping** — limited retries to maintain efficiency
-* **Explainability** — system behavior is observable and traceable
+- **Grounded Responses** — answers must be based on retrieved data
+- **Iterative Improvement** — responses improve over multiple passes
+- **Controlled Looping** — limited retries to maintain efficiency
+- **Explainability** — system behavior is observable and traceable
 
 ---
 
 ## ⚙️ Tech Stack (Planned)
 
-* Python
-* FastAPI
-* Vector Database (ChromaDB / Pinecone)
-* LLM (GPT / Claude or equivalent)
+- Python
+- FastAPI
+- Vector Database (ChromaDB / Pinecone)
+- LLM (GPT / Claude or equivalent)
 
 ---
 
@@ -111,48 +111,58 @@ Performs additional checks for hallucination or unsupported claims.
 
 This project uses `uv` for dependency management.
 
+Note: the `rag` extra depends on `spaCy`, which currently supports Python `3.10`–`3.13` (not `3.14`).
+
 ```powershell
 uv sync
 uv run uvicorn interfaces.fastapi.app:app --reload --port 8000
 ```
 
+If your system Python is `3.14`, install/use Python `3.13` with uv:
+
+```powershell
+uv python install 3.13
+uv venv --python 3.13
+uv sync --extra rag
+```
+
 Open:
 
-* `http://127.0.0.1:8000/docs`
+- `http://127.0.0.1:8000/docs`
 
 ---
 
 ## 📚 Docs
 
-* Core engine architecture: `docs/core-architecture.md`
-* API endpoints: `docs/endpoints.md`
+- Core engine architecture: `docs/core-architecture.md`
+- API endpoints: `docs/endpoints.md`
 
 ---
 
 ## 📊 Features
 
-* Iterative self-correction loop
-* Critique-driven query refinement
-* Context-grounded answer generation
-* Modular and extensible architecture
+- Iterative self-correction loop
+- Critique-driven query refinement
+- Context-grounded answer generation
+- Modular and extensible architecture
 
 ---
 
 ## 👥 Team
 
-* Ishan Kulkarni
-* Om Kesti 
-* Keshav Kothare
-* Shreyas Madake
+- Ishan Kulkarni
+- Om Kesti
+- Keshav Kothare
+- Shreyas Madake
 
 ---
 
 ## 📎 Future Improvements
 
-* Advanced hallucination detection
-* Better retrieval ranking strategies
-* UI for visualizing reasoning steps
-* Domain-specific optimization
+- Advanced hallucination detection
+- Better retrieval ranking strategies
+- UI for visualizing reasoning steps
+- Domain-specific optimization
 
 ---
 

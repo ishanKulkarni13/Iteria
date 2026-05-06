@@ -27,6 +27,12 @@ class Settings(BaseSettings):
 	chunk_size: int = Field(default=800, ge=100, le=5000)
 	chunk_overlap: int = Field(default=120, ge=0, le=1000)
 
+	# RAG / Chroma retriever (query-time)
+	use_chroma_retriever: bool = False
+	chroma_persist_dir: str = "data/vector_db"
+	chroma_collection_name: str = "iteria"
+	embedding_model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:

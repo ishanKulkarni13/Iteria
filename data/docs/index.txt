@@ -1,0 +1,257 @@
+ARTIFICIAL INTELLIGENCE OVERVIEW
+
+==================================================
+INTRODUCTION
+==================================================
+
+Artificial Intelligence (AI) is a branch of computer science
+focused on building systems capable of performing tasks that
+normally require human intelligence.
+
+These tasks include:
+- Learning
+- Decision making
+- Pattern recognition
+- Natural language understanding
+- Image recognition
+
+AI is widely used in healthcare, finance, education,
+cybersecurity, robotics, and software engineering.
+
+
+==================================================
+TYPES OF AI
+==================================================
+
+1. Narrow AI
+-------------
+Designed for specific tasks.
+
+Examples:
+- Chatbots
+- Voice assistants
+- Recommendation systems
+- Spam filters
+
+
+2. General AI
+-------------
+A theoretical AI capable of performing any intellectual
+task that a human can perform.
+
+
+3. Super AI
+-----------
+A hypothetical AI more intelligent than humans in every field.
+
+
+==================================================
+MACHINE LEARNING
+==================================================
+
+Machine Learning (ML) is a subset of AI where systems learn
+from data instead of being explicitly programmed.
+
+Types of Machine Learning:
+
+- Supervised Learning
+  Learns from labeled datasets.
+
+- Unsupervised Learning
+  Finds hidden patterns in data.
+
+- Reinforcement Learning
+  Learns using rewards and penalties.
+
+
+==================================================
+DEEP LEARNING
+==================================================
+
+Deep Learning uses neural networks with many layers to
+process large amounts of complex data.
+
+Applications:
+- Image recognition
+- Speech recognition
+- NLP
+- Self-driving cars
+
+Sample Equation:
+
+y = f(Wx + b)
+
+
+==================================================
+NATURAL LANGUAGE PROCESSING
+==================================================
+
+Natural Language Processing (NLP) helps computers understand
+and generate human language.
+
+Common NLP Tasks:
+- Translation
+- Sentiment analysis
+- Text summarization
+- Question answering
+
+Example:
+"Large Language Models are changing software development."
+
+
+==================================================
+RETRIEVAL-AUGMENTED GENERATION (RAG)
+==================================================
+
+RAG combines:
+1. Information Retrieval
+2. Large Language Models
+
+Basic RAG Pipeline:
+
+User Query
+    |
+    v
+Embedding Model
+    |
+    v
+Vector Database Search
+    |
+    v
+Relevant Context Retrieved
+    |
+    v
+LLM Generates Final Response
+
+
+==================================================
+COMPONENTS OF A RAG SYSTEM
+==================================================
+
+1. Embedding Model
+------------------
+Converts text into vector representations.
+
+Examples:
+- BGE
+- E5
+- all-MiniLM
+- OpenAI Embeddings
+
+
+2. Vector Database
+------------------
+Stores embeddings for semantic search.
+
+Examples:
+- Pinecone
+- ChromaDB
+- FAISS
+- Weaviate
+
+
+3. Language Model
+-----------------
+Generates responses using retrieved context.
+
+Examples:
+- Llama
+- Mistral
+- GPT models
+
+
+==================================================
+SAMPLE PYTHON CODE
+==================================================
+
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+sentences = [
+    "Artificial Intelligence is powerful.",
+    "RAG pipelines improve accuracy."
+]
+
+embeddings = model.encode(sentences)
+
+print(embeddings.shape)
+
+
+==================================================
+ADVANTAGES OF RAG
+==================================================
+
+- Reduces hallucinations
+- Uses external knowledge
+- Improves factual accuracy
+- Supports real-time information retrieval
+
+
+==================================================
+LIMITATIONS OF RAG
+==================================================
+
+1. Retrieval quality matters
+2. Poor chunking reduces accuracy
+3. Vector databases can become large
+4. Latency may increase
+
+
+==================================================
+CHUNKING EXAMPLE
+==================================================
+
+BAD CHUNK:
+-----------
+Artificial intelligence is a branch of computer science
+machine learning is a subset deep learning uses neural
+networks vector databases are useful for retrieval...
+
+
+GOOD CHUNK:
+------------
+Machine Learning is a subset of Artificial Intelligence.
+
+Deep Learning uses neural networks to process complex data.
+
+Vector databases help retrieve semantically similar content.
+
+
+==================================================
+METADATA EXAMPLE
+==================================================
+
+document_id : doc_001
+source      : ai_notes.txt
+author      : Om
+tags        : AI, RAG, ML
+created_at  : 2026-05-06
+
+
+==================================================
+LINUX COMMANDS
+==================================================
+
+ls -la
+mkdir rag_project
+cd rag_project
+
+
+==================================================
+GIT COMMANDS
+==================================================
+
+git init
+git add .
+git commit -m "Initial commit"
+
+
+==================================================
+CONCLUSION
+==================================================
+
+RAG pipelines are becoming an important architecture for
+modern AI systems. By combining retrieval systems with
+language models, developers can create more accurate,
+scalable, and context-aware applications.
