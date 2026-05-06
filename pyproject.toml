@@ -1,0 +1,29 @@
+[project]
+name = "iteria"
+version = "0.1.0"
+description = "Iteria - agentic RAG with iterative self-correction"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+rag = [
+  "chromadb>=0.5",
+]
+
+dev = [
+  "ruff>=0.4",
+]
+
+[tool.uv]
+# uv will create/manage a virtual environment and lockfile for reproducible installs.
+
+[tool.ruff]
+line-length = 100

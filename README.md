@@ -107,6 +107,28 @@ Performs additional checks for hallucination or unsupported claims.
 
 ---
 
+## 📦 Package Manager (uv)
+
+This project uses `uv` for dependency management.
+
+```powershell
+uv sync
+uv run uvicorn interfaces.fastapi.app:app --reload --port 8000
+```
+
+Open:
+
+* `http://127.0.0.1:8000/docs`
+
+---
+
+## 📚 Docs
+
+* Core engine architecture: `docs/core-architecture.md`
+* API endpoints: `docs/endpoints.md`
+
+---
+
 ## 📊 Features
 
 * Iterative self-correction loop

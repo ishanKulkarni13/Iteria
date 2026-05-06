@@ -33,11 +33,8 @@ def load_documents():
 
 
 
-# for testing 
-def testLoader():
+if __name__ == "__main__":
     docs = load_documents()
     for i, doc in enumerate(docs):
-        print(f"\n--- Document {i+1} ---\n")
-        print(doc[:200])  # print first 200 chars
-
-testLoader();
+        print(f"\n--- Document {i + 1} ---\n")
+        print(doc[:200])
