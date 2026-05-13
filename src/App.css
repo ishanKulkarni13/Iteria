@@ -1,0 +1,121 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gemini Chat UI Minimal Styles */
+.gemini-chat-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #181c24;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.gemini-header {
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: #23272f;
+  border-bottom: 1px solid #23272f;
+  letter-spacing: 1px;
+}
+.gemini-chat-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 0.5rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.gemini-msg {
+  max-width: 70%;
+  padding: 0.85rem 1.2rem;
+  border-radius: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  word-break: break-word;
+  box-shadow: 0 2px 8px 0 #0002;
+}
+.gemini-user {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #5f5fff 0%, #7f7fff 100%);
+  color: #fff;
+}
+.gemini-assistant {
+  align-self: flex-start;
+  background: #23272f;
+  color: #e0e0e0;
+}
+.gemini-chat-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #181c24;
+  border-top: 1px solid #23272f;
+}
+.gemini-input {
+  flex: 1;
+  resize: none;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  background: #23272f;
+  color: #fff;
+  outline: none;
+  min-height: 2.5rem;
+  max-height: 6rem;
+}
+.gemini-send {
+  background: #5f5fff;
+  color: #fff;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gemini-send:disabled {
+  background: #444a;
+  cursor: not-allowed;
+}
+.gemini-send:not(:disabled):hover {
+  background: #4747e6;
+}
